@@ -90,17 +90,18 @@
 				</table>
 			</div>
 				<?php } else { ?>
+				<?=(isset($_GET['msg']))?$_GET['msg']:'';?>
 				
-					<form action=" " method="post">
+					<form action="aluno_valida.php"method="post">
 
-						<label for="ID" class="labelform"> <b> ID </b>
-						</label> <input type="text" name="ID" id="Nome" class="inputform" />
+						<label for="id" class="labelform"> <b> id </b>
+						</label> <input type="text" name="id" id="Nome" class="inputform" />
 		
-						<label for="Nome" class="labelform"> <b> Nome </b>
-						</label> <input type="text" name="Nome" id="Nome" class="inputform" />
+						<label for="Nome" class="labelform"> <b> nome </b>
+						</label> <input type="text" name="nome" id="Nome" class="inputform" />
 		
-						<label for="E-mail" class="labelform"> <b> E-mail </b>
-						</label> <input type="text" name="E-mail" id="E-mail"
+						<label for="email" class="labelform"> <b> email </b>
+						</label> <input type="text" name="email" id="email"
 							class="inputform" /> <input type="submit" />
 		
 		
