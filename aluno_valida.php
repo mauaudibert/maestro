@@ -13,15 +13,17 @@ if (! $id) {
 	$mensagem = 'informe os email';
 	header ( "location:/maestro/aluno_lista.php?msg=$mensagem&menu=aluno&formulario=1" );
 } else {
-	var_dump ( $id );
-	var_dump ( $nome );
-	var_dump ( $email );
+	//var_dump ( $id );
+	//var_dump ( $nome );
+	//var_dump ( $email );
 
 	$fd = fopen ( "arquivo_aluno.txt", "a" );
-fwrite ( $fd, "$id;$nome;$email\n" );
+fwrite ( $fd, "\n$id;$nome;$email" );
 fclose ( $fd );
 
-
+	$mensagem = 'Cadastro realizado com sucesso';
+	$mensagem = 'informe os email';
+	header ( "location:/maestro/aluno_lista.php?msg=$mensagem&menu=aluno&formulario=0" );
 	
 	
 }
