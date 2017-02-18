@@ -1,4 +1,3 @@
-
 <div class="row">
 	<h1>Professor</h1>
 	<ol class="breadcrumb">

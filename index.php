@@ -1,3 +1,10 @@
+<?php
+session_start ();
+?>
+<?php  if(!isset($_SESSION['autenticado']) or !$_SESSION['autenticado']){?>
+<?php  header('location: login.php');?>
+<?php  } ?>
+
 <?php include('header.php');?>
 <?php
 
