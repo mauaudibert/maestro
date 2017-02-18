@@ -1,11 +1,9 @@
-<?php  $sair = filter_input(INPUT_GET, 'sair', FILTER_VALIDATE_INT);?>
+<?php  $sair = filter_input(INPUT_POST, 'sair', FILTER_VALIDATE_INT);?>
 <?php  if($sair ==1){?>
-}
-<?php
+	<?php session_destroy (); ?>
+	<?php header('location:login.php');?>
+<?php } ?>
 
-session_destroy ();
-?>
-<?php header('location:login.php');?>
 <div class="row">
 	<h1>Sair</h1>
 	<ol class="breadcrumb">
@@ -13,10 +11,9 @@ session_destroy ();
 		<li class="active">Sair</li>
 	</ol>
 </div>
-<form action= "index,php?pagina=sair">
+<form action="index.php?pagina=sair" method="post">
 	<h1>Você deseja sair?</h1>
 	<button type="submit" class="btn btn-default" name="sair" value="1">Sim</button>
 	<a haref="index.php?pagina=dashboard" class="btn btn-default">Não</a>
 </form>
 </div>
-
