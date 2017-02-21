@@ -30,6 +30,12 @@ switch ($pagina) {
 			include ('sair_lista.php');
 			break;
 		}
+	case 'usuarios' :
+		{
+			include ('usuarios_lista.php');
+			break;
+		}
+			
 	default :
 		{
 			include ('dashboard.php');
