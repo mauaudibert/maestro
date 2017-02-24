@@ -11,7 +11,7 @@ $salvar = filter_input(INPUT_POST, 'salvar', FILTER_VALIDATE_INT);
 if(!$id)
 {
 	//CRIAR
-
+	
 	if($salvar){
 		//Salvo os dados no arquivo
 		//Verificando o preenchimento
@@ -20,8 +20,8 @@ if(!$id)
 		}elseif(!$senha){
 			$mensagem['senha'] = 'Preencha a senha';
 		}else{
-				
-				
+			
+			
 			//Abrir Conexão
 			$link = mysqli_connect('localhost','root','');
 			$conexao = mysqli_select_db($link, 'maestro');
@@ -29,36 +29,36 @@ if(!$id)
 			//Faz o Uso
 			//Inserindo os dados
 			$sql = " insert into usuarios
-			(
-			id_usuario,
-			nome,
-			usuario,
-			senha
-			)
-			values
-			(
-			null,
-			'$usuario',
-			'@',
-			'$senha'
-			)";
-				
+					(
+						id_usuario, 
+						nome, 
+						usuario, 
+						senha
+					) 
+					values 
+					(	
+						null,
+						'$usuario', 
+						'@',
+						'$senha'
+					)";
+					
 			$resultado = mysqli_query($link, $sql);
 
 			//Fechei a conexao
 			mysqli_close($link);
-
 				
-				
+			
+			
 			$mensagem['sucesso'] = 'Registro inserido. Você já pode edita-lo.';
-				
-			header('location: usuarios_lista.php?mensagem='.$mensagem['sucesso']);
-				
+			
+			header('location: index.php?pagina=usuarios&mensagem='.$mensagem['sucesso']);
+			
 		}
 
 	}
-
-
+	
+	
 }
 else
 {
@@ -71,7 +71,7 @@ else
 		}elseif(!$senha){
 			$mensagem['senha'] = 'Preencha a senha';
 		}else{
-
+				
 			//Abrir Conexão
 			$link = mysqli_connect('localhost','root','');
 			$conexao = mysqli_select_db($link, 'maestro');
@@ -79,60 +79,46 @@ else
 			//Faz o Uso
 			//Atualizando os dados
 			$sql = "
-			update usuarios
-			set
-			usuario = '$usuario',
-			nome = '$usuario',
-			senha = '$senha'
-
-			where
-			id_usuario = $id
-			";
+				update usuarios
+				set
+					usuario = '$usuario',
+					nome = '$usuario',
+					senha = '$senha'
 				
+				where
+					id_usuario = $id
+			";
+					
 			$resultado = mysqli_query($link, $sql);
 
 			//Fechei a conexao
 			mysqli_close($link);
-
+				
 			$mensagem['sucesso'] = 'Registro Editado.';
-			header('location: usuarios_lista.php?mensagem='.$mensagem['sucesso']);
-
+			header('location: index.php?pagina=usuarios&mensagem='.$mensagem['sucesso']);
+				
 		}
 
 	}else{
-		//Busco os dados do banco de dados
-
-		$dados = array();
-
-
+		
 		//Abrir Conexão
 		$link = mysqli_connect('localhost','root','');
 		$conexao = mysqli_select_db($link, 'maestro');
 
 		//Faz o Uso
-		//Atualizando os dados
-		$sql = "
-		select
-		*
-		from
-		usuarios
-		where
-		id_usuario = $id
-		";
-
+		//Buscar os dados
+		$sql = "select id_usuario, usuario, senha, nome from usuarios where	id_usuario = $id";
+				
 		$resultado = mysqli_query($link, $sql);
 
-		$row = mysql_affected_rows($resultado);
-
-		$usuario = $row['usuario'];
-		$senha = $row['senha'];
-
+		$row = mysqli_fetch_row($resultado);
+		
+		$usuario = $row[1];
+		$senha = $row[2];
+		
 		//Fechei a conexao
 		mysqli_close($link);
-
-
-
-
+		
 	}
 }
 ?>
